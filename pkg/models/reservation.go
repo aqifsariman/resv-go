@@ -11,14 +11,15 @@ type Reservation struct {
 	Title       string
 	TimeFrom    time.Time
 	TimeTo      time.Time
-	ResvBy      string
+	ResvBy      uint
+	User        User `gorm:"foreignKey:ResvBy"`
 	Description string
 	Location    string
 	Color       string
 	CreatedAt   time.Time
 }
 
-func NewReservation(id uint, title string, timeFrom time.Time, timeTo time.Time, resvBy, color, description, location string) *Reservation {
+func NewReservation(id uint, title string, timeFrom time.Time, timeTo time.Time, resvBy uint, color, description, location string) *Reservation {
 	return &Reservation{
 		Id:          id,
 		Title:       title,
